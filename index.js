@@ -103,7 +103,8 @@ export default class RNModalPicker extends PureComponent {
         style={styles.listRowClickTouchStyle}
         onPress={() => {
       if(item.name===this.props.NAtext){
-      this.props.onNA();
+         this.setState({ modalVisible: false });
+         this.props.onNA();
       }else{
          this._setSelectedIndex(index, item);
       }
