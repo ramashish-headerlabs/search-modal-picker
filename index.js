@@ -82,7 +82,7 @@ export default class RNModalPicker extends PureComponent {
         return itemData.startsWith(textData);
       });
       if (newData.length == 0) {
-        const newObj = [{ id: 999, name: searchText }]
+        const newObj = [{ id: 999777888, name: this.props.NAtext }]
         this.setState({
           dataSource: [...newObj]
         });
@@ -101,7 +101,14 @@ export default class RNModalPicker extends PureComponent {
       <TouchableOpacity
         activeOpacity={1}
         style={styles.listRowClickTouchStyle}
-        onPress={() => this._setSelectedIndex(index, item)}
+        onPress={() => {
+      if(item.name===this.props.NAtext){
+      this.props.onNA();
+      }else{
+         this._setSelectedIndex(index, item);
+      }
+     
+    }}
       >
         <View style={styles.listRowContainerStyle}>
           <Text style={this.props.pickerItemTextStyle}>{item.name}</Text>
@@ -324,6 +331,8 @@ RNModalPicker.propTypes = {
   disablePicker: PropTypes.bool,
   changeAnimation: PropTypes.string,
   searchBarPlaceHolder: PropTypes.string,
+  NAtext:PropTypes.string,
+  onNA:PropTypes.func,
   pickerItemTextStyle: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.object,
